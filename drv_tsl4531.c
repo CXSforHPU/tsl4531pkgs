@@ -2,11 +2,11 @@
 #include <rtdevice.h>
 #include "sensor.h"
 #include <rtdbg.h>
-#include <dr_tsl4531.h>
+#include <drv_tsl4531.h>
 
 #define SENSOR_LUX_RANGE_MAX 4000
 #define SENSOR_LUX_RANGE_MIN 0
-/* Ğ´´«¸ĞÆ÷¼Ä´æÆ÷ */
+/* å†™ä¼ æ„Ÿå™¨å¯„å­˜å™¨ */
 static rt_err_t write_reg(struct rt_i2c_bus_device *bus, rt_uint8_t reg, rt_uint8_t *data)
 {
 	
@@ -22,7 +22,7 @@ static rt_err_t write_reg(struct rt_i2c_bus_device *bus, rt_uint8_t reg, rt_uint
     msgs.buf = buf;
     msgs.len = 2;
 
-    /* µ÷ÓÃI2CÉè±¸½Ó¿Ú´«ÊäÊı¾İ */
+    /* è°ƒç”¨I2Cè®¾å¤‡æ¥å£ä¼ è¾“æ•°æ® */
     if (rt_i2c_transfer(bus, &msgs,  1) == 1)
     { 
 		
@@ -36,7 +36,7 @@ static rt_err_t write_reg(struct rt_i2c_bus_device *bus, rt_uint8_t reg, rt_uint
     }
 }
 
-/* ¶Á´«¸ĞÆ÷¼Ä´æÆ÷Êı¾İ */
+/* è¯»ä¼ æ„Ÿå™¨å¯„å­˜å™¨æ•°æ® */
 static rt_err_t read_regs(struct rt_i2c_bus_device *bus, rt_uint8_t len, rt_uint8_t *buf)
 {
     struct rt_i2c_msg msgs;
@@ -46,7 +46,7 @@ static rt_err_t read_regs(struct rt_i2c_bus_device *bus, rt_uint8_t len, rt_uint
     msgs.buf = buf;
     msgs.len = len;
 
-    /* µ÷ÓÃI2CÉè±¸½Ó¿Ú´«ÊäÊı¾İ */
+    /* è°ƒç”¨I2Cè®¾å¤‡æ¥å£ä¼ è¾“æ•°æ® */
     if (rt_i2c_transfer(bus, &msgs,  1) == 1)
     {
 			 
@@ -60,7 +60,7 @@ static rt_err_t read_regs(struct rt_i2c_bus_device *bus, rt_uint8_t len, rt_uint
     }
 }
 
-/* ´«¸ĞÆ÷Éè±¸³õÊ¼»¯ */
+/* ä¼ æ„Ÿå™¨è®¾å¤‡åˆå§‹åŒ– */
 static rt_err_t sensor_tsl4531_init(tsl4531_device_t dev)
 { 
     rt_uint8_t temp[1] = {0};
@@ -99,7 +99,7 @@ float tls4531_read_lux(tsl4531_device_t dev)
 
     return lux;
 }
-/*´Ëº¯Êı·ÖÅä³õÊ¼»¯Éè±¸¶ÑµÄ¿Õ¼ä*/
+/*æ­¤å‡½æ•°åˆ†é…åˆå§‹åŒ–è®¾å¤‡å †çš„ç©ºé—´*/
  tsl4531_device_t tsl4531_init(const char *i2c_bus_name)
 {
     tsl4531_device_t dev;
@@ -113,7 +113,7 @@ float tls4531_read_lux(tsl4531_device_t dev)
         return RT_NULL;
     }
 
-    dev->i2c = rt_i2c_bus_device_find(i2c_bus_name);//»ñÈ¡Éè±¸¾ä±ú
+    dev->i2c = rt_i2c_bus_device_find(i2c_bus_name);//è·å–è®¾å¤‡å¥æŸ„
     if (dev->i2c == RT_NULL)
     {
         LOG_E("Can't find tsl4531 device on '%s' ", i2c_bus_name);
@@ -126,7 +126,7 @@ float tls4531_read_lux(tsl4531_device_t dev)
     return dev;
 }
 
-/*********ÒÔÉÏÊÇ´«¸ĞÆ÷Ó²¼şÉè±¸Çı¶¯²¿·Ö*****************/
+/*********ä»¥ä¸Šæ˜¯ä¼ æ„Ÿå™¨ç¡¬ä»¶è®¾å¤‡é©±åŠ¨éƒ¨åˆ†*****************/
 
 
 
@@ -134,7 +134,7 @@ float tls4531_read_lux(tsl4531_device_t dev)
 
 
 
-/*********ÒÔÏÂÊÇsensorÉè±¸Çı¶¯²¿·Ö*****************/
+/*********ä»¥ä¸‹æ˜¯sensorè®¾å¤‡é©±åŠ¨éƒ¨åˆ†*****************/
 
 static struct tsl4531_device *lux_dev;
 
@@ -189,7 +189,7 @@ static rt_err_t tsl4531_control(struct rt_sensor_device *sensor, int cmd, void *
     return result;
 }
 
-static struct rt_sensor_ops sensor_ops =//Íê³ÉÁ½¸ö»Øµ÷º¯Êı¾Í¿ÉÒÔ¶ÁÈ¡Êı¾İÁË
+static struct rt_sensor_ops sensor_ops =//å®Œæˆä¸¤ä¸ªå›è°ƒå‡½æ•°å°±å¯ä»¥è¯»å–æ•°æ®äº†
 {
     tsl4531_fetch_data,
     tsl4531_control
