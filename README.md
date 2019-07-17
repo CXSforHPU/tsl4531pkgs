@@ -31,18 +31,15 @@ TSL4531 软件包提供了使用光照传感器 `TSL4531` 基本功能。并且�
 
 ### 获取软件包
 
-使用 aht10 软件包需要在 RT-Thread 的包管理中选中它，具体路径如下：
+使用 tsl4531 软件包需要在 RT-Thread 的包管理中选中它，具体路径如下：
 
 ```
 RT-Thread online packages  --->
   peripheral libraries and drivers  --->
     sensors drivers  --->
-            tsl4531: digital humidity and temperature sensor tsl4531 driver library. 
-                         [ ]   Enable average filter by software         
-                               Version (latest)  --->
+         tsl4531: digital humidity and temperature sensor tsl4531 driver library. --->  
+                Version (latest)  --->       
 ```
-
-
 
 **Version**：软件包版本选择，默认选择最新版本。
 
@@ -89,6 +86,3 @@ INIT_ENV_EXPORT(rt_hw_tsl4531_port);
 ## 联系人信息
 
 维护人:984490128@qq.com
-
-- 维护：
-- 主页：
