@@ -12,7 +12,6 @@
 #define __TSL4531_H
 
 #include <rtdevice.h>
-#include <sensor.h>
 
 struct tsl4531_device
 {

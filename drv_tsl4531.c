@@ -10,7 +10,6 @@
 
 #include <rtthread.h>
 #include <rtdevice.h>
-#include "sensor.h"
 #include <rtdbg.h>
 #include <drv_tsl4531.h>
 
@@ -165,7 +164,7 @@ static rt_size_t _tsl4531_polling_get_data(rt_sensor_t sensor, struct rt_sensor_
   return 1;
 }
 
-static rt_size_t tsl4531_fetch_data(struct rt_sensor_device *sensor, void *buf, rt_size_t len)
+static rt_ssize_t tsl4531_fetch_data(struct rt_sensor_device *sensor, void *buf, rt_size_t len)
 {
     RT_ASSERT(buf);
 
