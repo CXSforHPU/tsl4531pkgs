@@ -12,6 +12,7 @@
 #define __TSL4531_H
 
 #include <rtdevice.h>
+#include <rtthread.h>
 
 struct tsl4531_device
 {
@@ -19,6 +20,14 @@ struct tsl4531_device
     rt_mutex_t lock;
 };
 typedef struct tsl4531_device *tsl4531_device_t;
+
+#if defined(RT_VERSION_CHECK)
+    #if (RTTHREAD_VERSION >= RT_VERSION_CHECK(5, 0, 2))
+        #define RT_SIZE_TYPE   rt_ssize_t
+    #else
+        #define RT_SIZE_TYPE   rt_size_t
+    #endif
+#endif
 
 #define TSL4531_ADDR        0x29
 #define TSL4531_CMD_FIELD   0x80

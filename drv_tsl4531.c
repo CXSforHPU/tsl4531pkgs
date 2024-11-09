@@ -151,7 +151,7 @@ void tsl4531_deinit(tsl4531_device_t dev)
     rt_free(dev);
 }
 
-static rt_size_t _tsl4531_polling_get_data(rt_sensor_t sensor, struct rt_sensor_data *data)
+static RT_SIZE_TYPE _tsl4531_polling_get_data(rt_sensor_t sensor, struct rt_sensor_data *data)
 {
     rt_int32_t luxvalue;
     
@@ -164,7 +164,7 @@ static rt_size_t _tsl4531_polling_get_data(rt_sensor_t sensor, struct rt_sensor_
   return 1;
 }
 
-static rt_ssize_t tsl4531_fetch_data(struct rt_sensor_device *sensor, void *buf, rt_size_t len)
+static RT_SIZE_TYPE tsl4531_fetch_data(struct rt_sensor_device *sensor, void *buf, rt_size_t len)
 {
     RT_ASSERT(buf);
 
